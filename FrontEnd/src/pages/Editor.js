@@ -1,4 +1,6 @@
+import { Main } from "../Components/Editor";
+
 function Editor() {
-    return <> Editor</>
+    return <Main />
 }
 export default Editor;

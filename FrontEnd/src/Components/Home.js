@@ -1,8 +1,10 @@
 import styles from "./home.module.css"
 import { generateUniqueRoomID, update, validateData } from "./common"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 export function Main() {
+    // pending mesage => Room ID Sucessfully Create on top 
     const [roomID, setRoomID] = useState({
         text: "",
         errorState: {
@@ -17,12 +19,14 @@ export function Main() {
             css: {}
         }
     })
+    const navigate = useNavigate();
+
     return <div className={styles.container}>
         <div className={styles.card}>
             {/* Logo and Title */}
             <div className="header">
-                <h1>Code RealTime</h1>
-                <p>collaborat with tream</p>
+                <h1>Code Realtime</h1>
+                <p>collaborat with team</p>
             </div>
 
             {/* Input Fields */}
@@ -82,6 +86,10 @@ export function Main() {
             {/* Join Button */}
             <button className={styles["join-button"]} onClick={() => {
                 if (validateData(roomID.text) && validateData(name.text)) {
+                    navigate(
+                        `/editor/${roomID.text}`,
+                        { state: { name } } // in editor we can access name
+                    )
                 } else {
                     if (!validateData(roomID.text)) {
                         setRoomID(prev => {

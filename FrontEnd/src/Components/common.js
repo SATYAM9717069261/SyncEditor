@@ -50,5 +50,8 @@ export function validateData(data) {
         return false;
     return true;
 }
+export async function copyClipboard(text, sucess, failure) {
+    return await navigator.clipboard.writeText(text).then(() => sucess(text)).catch((exception) => failure(exception.message))
+}
 
 //console.log(generateUniqueString());
