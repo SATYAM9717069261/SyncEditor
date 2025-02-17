@@ -1,3 +1,82 @@
-.homeContainer{
-    color:red
+
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  background-color: #1e1e1e;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 255, 0, 0.3);
+  text-align: center;
+  color: white;
+  width: 350px;
+}
+
+.header h1 {
+  color: #00ff7f;
+  margin-bottom: 5px;
+}
+
+.header p {
+  color: #aaaaaa;
+  font-size: 14px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.input-field {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background: #2a2a2a;
+  color: white;
+  outline: none;
+  font-size: 16px;
+}
+
+.input-field:focus {
+  border: 1px solid #00ff7f;
+}
+
+.join-button {
+  margin-top: 20px;
+  background-color: #00ff7f;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 100%;
+}
+
+.join-button:hover {
+  background-color: #00cc66;
+}
+
+.footer {
+  margin-top: 15px;
+  color: #aaaaaa;
+  font-size: 14px;
+}
+
+.footer .link {
+  color: #00ff7f;
+  text-decoration: none;
+}
+
+.footer .link:hover {
+  text-decoration: underline;
+  cursor:pointer;
 }
