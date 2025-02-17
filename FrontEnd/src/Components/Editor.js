@@ -1,12 +1,24 @@
+import { useEffect, useRef } from "react"
+import { initSocket } from "../socket"
 import { Code } from "./Code"
 import { copyClipboard } from "./common"
 import styles from "./editor.module.css"
 import { User } from "./User"
 export function Main() {
+
+    const socketRef = useRef(null);
     const users = [
         { name: "Rakesh K" },
         { name: "Satyam" },
     ]
+
+    useEffect(() => {
+        const init = async () => {
+            socketRef.current = await initSocket();
+            socketRef.current.emit('join');
+        }
+        init()
+    }, [])
     return <div className={styles.container}>
         <div className={styles.sidebar}>
             <h2 className={styles.logo}>Code Realtime</h2>
