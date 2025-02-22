@@ -1,6 +1,5 @@
-import { validateData } from "./common.js"
-
-export const ACTION = {
+const { validateData } = require("./common.js");
+const ACTION = {
     JOIN: "join",
     JOINED: "joined",
     DISCONNECT: "disconnect",
@@ -8,8 +7,10 @@ export const ACTION = {
     SYNC_CODE: "sync_code",
     LEAVE: "leave"
 }
-export function actiongetByID(name = "") {
+function getActionByID(name = "") {
     if (validateData(name))
         return ACTION[name];
     return "";
 }
+
+module.exports = { ACTION, getActionByID };

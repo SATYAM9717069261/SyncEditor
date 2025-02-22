@@ -1,9 +1,10 @@
-export function generateUniqueRoomID() {
+function generateUniqueRoomID() {
     const timestamp = Date.now().toString(36); // Convert current time to base36
     const randomPart = Math.random().toString(36).substring(2, 10); // Generate random string
     return (timestamp + randomPart).substring(0, 16); // Ensure it's 16 characters long
 }
-export function update(data, command) {
+
+function update(data, command) {
     for (const [key, value] of Object.entries(command)) {
         switch (key) {
             case '$push':
@@ -32,7 +33,7 @@ export function update(data, command) {
         }
     }
 }
-export function validateData(data) {
+function validateData(data) {
     /** don't Add data == 0 return true; */
     if (data == undefined)
         return false;
@@ -50,8 +51,9 @@ export function validateData(data) {
         return false;
     return true;
 }
-export async function copyClipboard(text, sucess, failure) {
+
+async function copyClipboard(text, sucess, failure) {
     return await navigator.clipboard.writeText(text).then(() => sucess(text)).catch((exception) => failure(exception.message))
 }
-
+module.exports = { validateData, copyClipboard, update, generateUniqueRoomID }
 //console.log(generateUniqueString());
