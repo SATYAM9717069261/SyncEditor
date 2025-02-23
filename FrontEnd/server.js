@@ -4,15 +4,22 @@ const http = require('http');
 const { getActionByID } = require("./src/Components/enum.js")
 
 const server = http.createServer(app);
-const { Server } = require("socket.io")
+const { Server } = require("socket.io");
+const path = require('path');
 
-const io = new Server(server);
 const PORT = process.env.PORT || 5000;
+const io = new Server(server);
+
 
 const userMapping = {} // use Redis or sql 
 
 server.listen(PORT, () => {
     console.log("USE PORT:", PORT)
+})
+
+app.use(express.static('build'));
+app.use((req, res, next) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
 
 function getAllConnectedClients(roomID) {
