@@ -38,5 +38,28 @@ io.on('connection', (socket) => {
             })
         })
     })
-    console.log("Socket => ", socket.id)
+
+    socket.on(getActionByID('CODE_CHANGE'), ({ roomID, userDetail, value }) => {
+        const roomClients = getAllConnectedClients(roomID);
+        roomClients.forEach(({ socketId, userName }) => {
+            if (userDetail.id != socketId) {
+                io.to(socketId).emit(getActionByID('CODE_CHANGE'), { value })
+            }
+        })
+    })
+
+    socket.on('disconnecting', () => {
+        // if user go to another tab [not in Our App]
+        const rooms = [...socket.rooms]
+        rooms.forEach((roomID) => {
+            socket.in(roomID).emit(getActionByID("DISCONNECTED"), {
+                socketId: socket.id,
+                userName: userMapping[socket.id]
+            })
+        })
+        delete userMapping[socket.id]
+        socket.leave();
+    })
 })
+
+
